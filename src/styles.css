@@ -1,0 +1,54 @@
+html, body{
+  height:100%;
+  background-color: black;
+  color: white;
+} 
+
+.searchHeader{
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500;
+}
+.searchContainer{
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+.searchInput{
+  height: 3.5em;
+  width: 20em;
+}
+.searchButton{
+  height: 4em;
+  width: 5em;
+}
+
+.moviesContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.movieCard {
+  width: 250px;
+  border-radius: 10px;
+  border-style: solid;
+  box-shadow: 0px 0px 40px 5px rgba(255,255,255,0.2);
+  margin: 1rem;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.movieTitle {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0px;
+  color: white;
+}
+.movieYear {
+  font-size: 18px;
+  color: white;
+  margin: 0px;
+}
+.movieImg {
+  width: 250px;
+  height: 300px;
+}
