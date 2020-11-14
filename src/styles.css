@@ -1,5 +1,8 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 html, body{
-  height:100%;
   background-color: black;
   color: white;
 } 
@@ -8,19 +11,20 @@ html, body{
   text-align: center;
   font-size: 30px;
   font-weight: 500;
+  margin: 0.5rem;
 }
 .searchContainer{
   display: flex;
   justify-content: center;
-  margin: 1em;
+  margin-bottom: 1rem;
 }
 .searchInput{
-  height: 3.5em;
-  width: 20em;
+  height: 50px;
+  width: 200px;
 }
 .searchButton{
-  height: 4em;
-  width: 5em;
+  height: 50px;
+  width: 100px;
 }
 
 .moviesContainer {
@@ -28,27 +32,42 @@ html, body{
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.movieCard {
-  width: 250px;
-  border-radius: 10px;
-  border-style: solid;
-  box-shadow: 0px 0px 40px 5px rgba(255,255,255,0.2);
-  margin: 1rem;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-.movieTitle {
-  font-size: 20px;
-  font-weight: 500;
-  margin: 0px;
-  color: white;
-}
-.movieYear {
-  font-size: 18px;
-  color: white;
-  margin: 0px;
-}
+
+
 .movieImg {
+  border-radius: 25px;
+  margin: 10px;
+  box-shadow: 0px 0px 10px white;
+  border-style: solid;
+  border-width: 5px;
+  border-color: black;
+}
+
+.movieDetailsContainer{
+  display: none;
+  margin: 5rem;
+  padding: 1rem;
+  box-shadow: 0px 0px 40px white;
+  border-radius: 25px;
+}
+
+.detailsImg{
   width: 250px;
-  height: 300px;
+}
+
+.detailsHeader{ 
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+  background-color: rgb(55, 55, 55);
+  padding: 10px;
+}
+
+.ratings{
+  padding: 10px;
+}
+
+.details{
+  padding: 20px;
+  font-size: 22px;
 }
