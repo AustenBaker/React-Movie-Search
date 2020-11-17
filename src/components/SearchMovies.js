@@ -39,8 +39,7 @@ class SearchMovies extends React.Component {
   render(){
     return (
       <div>
-        <p className="searchHeader">Movie Search</p>
-
+        <p className="mainHeader">Movie Search</p>
         <div className="searchContainer">
           <input value={this.state.input}
             onChange={this.updateInput}
@@ -51,38 +50,47 @@ class SearchMovies extends React.Component {
             className="searchButton"
             onClick={() => {
               this.searchMovie()
-              document.getElementById("moviesContainer").style.display = "flex"
-              document.getElementById("movieDetailsContainer").style.display = "none"
+              document.getElementById("movieResultsContainer").style.display = "flex"
+              document.getElementById("detailsContainer").style.display = "none"
             }}
           >
             Search
           </button>
         </div>
 
-        <div className="movieDetailsContainer" id="movieDetailsContainer">
-          <div className="detailsHeader">
-            <img 
-              className="detailsImg" 
-              src={this.state.details.Poster} 
-              alt="movie poster"
-            ></img>
-            <div className="ratings">
-              IMBD: {this.state.details.imdbRating} <br></br>
-              Metascore: {this.state.details.Metascore} <br></br>
-              Awards: {this.state.details.Awards}
-            </div>
+        <div 
+          className="detailsContainer" 
+          id="detailsContainer"
+          onClick= {() => { 
+            document.getElementById("movieResultsContainer").style.display = "flex"
+            document.getElementById("detailsContainer").style.display = "none"
+          }}
+        >
+          <img 
+            id="detailsImg" 
+            src={this.state.details.Poster} 
+            alt="movie poster"
+          >
+          </img>
+
+
+          <div id="detailsText">
+            IMBD: <b>{this.state.details.imdbRating} / 10</b> <br></br>
+            Metascore: <b>{this.state.details.Metascore} / 100</b> <br></br>
+            <b>Awards: {this.state.details.Awards}</b> <br></br> <br></br>
+
+            Runtime: {this.state.details.Runtime}utes <br></br>
+            Director(s): {this.state.details.Director} <br></br>
+            Actors: {this.state.details.Actors} <br></br>
+            Genre(s): {this.state.details.Genre} <br></br>
+            Writer(s): {this.state.details.Writer} <br></br><br></br>
+
+            Plot: {this.state.details.Plot} <br></br>
           </div>
-          <div className="details">
-                <b>Runtime:</b> {this.state.details.Runtime} <br></br>
-                <b>Genre(s):</b> {this.state.details.Genre} <br></br>
-                <b>Director(s):</b> {this.state.details.Director} <br></br>
-                <b>Writer(s):</b> {this.state.details.Writer} <br></br>
-                <b>Actors:</b> {this.state.details.Actors} <br></br><br></br>
-                <b>Plot:</b> {this.state.details.Plot} <br></br>
-            </div>
         </div>
 
-        <div className="moviesContainer" id="moviesContainer">
+
+        <div className="movieResultsContainer" id="movieResultsContainer">
           {
             this.state.movies.map( (movie) =>
               <div 
@@ -90,8 +98,8 @@ class SearchMovies extends React.Component {
                 className="movieCard"
                 onClick= {() => {
                     this.getMovieDetails(movie.imdbID)
-                    document.getElementById("moviesContainer").style.display = "none"
-                    document.getElementById("movieDetailsContainer").style.display = "flex"
+                    document.getElementById("movieResultsContainer").style.display = "none"
+                    document.getElementById("detailsContainer").style.display = "flex"
                   }
                 }
               >
