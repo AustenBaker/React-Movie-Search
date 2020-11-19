@@ -36,15 +36,21 @@ html, body{
 
 
 /* Movie Search Results */
-.movieResultsContainer {
+#searchResultsContainer {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  margin: 10px;
+  margin-bottom: 100px;
+  background-color: rgba(83, 83, 83, 0.404);
+  border-radius: 50px;
 }
 .movieCard{ transition: all .2s ease-in-out; }
 .movieCard:hover{ transform: scale(1.1);}
 .movieImg {
   border-radius: 25px;
+  height: 350px;
+  width: 230px;
   margin: 20px;
   border-style: solid;
   border-width: 3px;
@@ -59,9 +65,9 @@ html, body{
 
 
 /* Movie Details Styling */
-.detailsContainer{
+#movieDetailsContainer{
   display: none;
-  margin: 5rem;
+  margin: 1rem;
   padding: 1rem;
   border-style: solid;
   border-width: 3px;
@@ -71,6 +77,8 @@ html, body{
 }
 #detailsImg {
   border-radius: 25px;
+  height: 450px;
+  width: 300px;
   border-style: solid;
   border-width: 3px;
   border-color: var(--secondary-color);
@@ -79,5 +87,6 @@ html, body{
   color: var(--secondary-color);
   padding: 20px;
   font-size: 22px;
+  word-break: break-word;
 }
 /* Movie Details Styling */
