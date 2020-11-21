@@ -19,7 +19,7 @@ html, body{
   font-weight: 500;
   margin: 0.5rem;
 }
-.searchContainer{
+#searchBarContainer{
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
