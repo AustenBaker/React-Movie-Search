@@ -90,3 +90,10 @@ html, body{
   word-break: break-word;
 }
 /* Movie Details Styling */
+
+/* Home Page Styling */
+#homeContainer {
+  background-color: indianred;
+  width: 100%;
+  height: 200px;
+}

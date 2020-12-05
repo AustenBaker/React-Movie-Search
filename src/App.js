@@ -3,7 +3,8 @@ import './styles.css';
 import $ from 'jquery';
 import MovieSearchBar from './components/MovieSearchBar';
 import MovieSearchResults from './components/MovieSearchResults.js';
-import MovieDetails from './components/MovieDetails.js'
+import MovieDetails from './components/MovieDetails.js';
+import Home from './components/Home';
 
 class App extends Component {
   constructor() {
@@ -56,6 +57,7 @@ class App extends Component {
         <MovieDetails 
           data={this.state.movieDetailsData} 
         /> 
+        <Home />
       </div>
     );
   }
