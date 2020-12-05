@@ -24,11 +24,16 @@ html, body{
   justify-content: center;
   margin-bottom: 1rem;
 }
+input[type="search"]
+{
+    font-size:20px;
+}
 .searchInput{
   height: 50px;
-  width: 200px;
+  width: 300px;
 }
 .searchButton{
+  font-size: 20px;
   height: 50px;
   width: 100px;
 }

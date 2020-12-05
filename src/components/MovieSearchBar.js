@@ -4,7 +4,10 @@ class MovieSearchBar extends React.Component {
   render(){
     return (
       <div id="searchBarContainer">
-        <input value={this.props.input}
+        <input 
+          type="search"
+          results="5"
+          value={this.props.input}
           onChange={this.props.updateInput}
           className="searchInput"
           placeholder="Back to the Future"
