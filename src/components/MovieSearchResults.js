@@ -11,7 +11,7 @@ class MovieSearchResults extends React.Component {
       //Render individual movie card results
       for(let i=0; i<data.Search.length; i++){
         moviesHTML += `
-          <div id="${data.Search[i].imdbID}" class="movieCard">
+          <div id="${data.Search[i].imdbID}" className="movieCard">
             <img class="movieImg" src="${data.Search[i].Poster}" alt="${data.Search[i].Title}"></img>
           </div>
         `;
@@ -34,7 +34,7 @@ class MovieSearchResults extends React.Component {
   render() {
     this.generateMovieCards();
     return(
-      <div id="searchResultsContainer"></div> 
+      <div id="searchResultsContainer" className="bg-dark"></div> 
     )
   }
 }

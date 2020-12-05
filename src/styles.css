@@ -1,6 +1,6 @@
 :root {
-  --main-color: black;
-  --secondary-color: white;
+  --main-color: #f8f9fa;
+  --secondary-color: #343a40;
 }
 
 *, *:before, *:after {
@@ -8,29 +8,46 @@
 }
 
 html, body{
-  background-color: var(--main-color);
-  color: var(--secondary-color);
+  background-color: var(--secondary-color);
+  color: var(--main-color);
+  margin:0;
+  padding:0;
 } 
 
+.wrapper {
+  min-height: calc(100vh - 50px);
+}
 /* Page Header & Search Bar */
 .mainHeader{
   text-align: center;
   font-size: 30px;
   font-weight: 500;
-  margin: 0.5rem;
+  margin: 1rem;
 }
 #searchBarContainer{
   display: flex;
+  min-height:100%;
+  position: relative;
   justify-content: center;
   margin-bottom: 1rem;
 }
-input[type="search"]
+#searchIcon{
+  position: absolute; 
+  font-size: 30px;
+  top: 10px;
+  margin-right: 250px;
+  color: black; 
+}
+input[type="text"]
 {
     font-size:20px;
 }
 .searchInput{
   height: 50px;
   width: 300px;
+  padding-left: 50px;
+  border-radius: 25px;
+  background-color: var(--main-color);
 }
 .searchButton{
   font-size: 20px;
@@ -42,7 +59,7 @@ input[type="search"]
 
 /* Movie Search Results */
 #searchResultsContainer {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 10px;
@@ -96,9 +113,19 @@ input[type="search"]
 }
 /* Movie Details Styling */
 
-/* Home Page Styling */
-#homeContainer {
-  background-color: indianred;
+/* Footer Styling */
+#FOOTER{
+  display: inline-block;
+  bottom: 0;
   width: 100%;
-  height: 200px;
+  height: 208px;
+  z-index: 999;
+ }
+
+ .footer-icon{
+  transition: 0.3s;
+ }
+ .footer-icon:hover{
+  transform: scale(1.2);
+  color: black;
 }

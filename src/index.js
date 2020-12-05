@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HomePage from './App';
+import App from './App';
+import 'bootstrap/dist/css/bootstrap.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <HomePage />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
