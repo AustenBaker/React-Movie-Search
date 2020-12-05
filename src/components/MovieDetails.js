@@ -7,17 +7,17 @@ class MovieDetails extends React.Component {
       <div id="movieDetailsContainer">
         <img id="detailsImg" src={data.Poster} alt="movie poster"></img>
         <div id="detailsText">
-          IMBD:      <b> {data.imdbRating} / 10 </b> 
-          Metascore: <b> {data.Metascore} / 100 </b> 
-          Awards:    <b> {data.Awards} </b> 
+          IMBD:      <b> {data.imdbRating} / 10 </b> <br></br>
+          Metascore: <b> {data.Metascore} / 100 </b> <br></br>
+          Awards:    <b> {data.Awards} </b> <br></br><br></br>
 
-          Runtime:      {data.Runtime}utes 
-          Plot:         {data.Plot} 
+          Plot:         {data.Plot} <br></br> <br></br>
 
-          Director(s):  {data.Director} 
-          Writer(s):    {data.Writer} 
-          Actors:       {data.Actors} 
-          Genre(s):     {data.Genre} 
+          Director(s):  {data.Director} <br></br>
+          Writer(s):    {data.Writer} <br></br>
+          Actors:       {data.Actors} <br></br>
+          Genre(s):     {data.Genre} <br></br>
+          Runtime:      {data.Runtime}utes  <br></br>
         </div>
       </div>
     )
