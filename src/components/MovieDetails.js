@@ -4,7 +4,7 @@ class MovieDetails extends React.Component {
   render() {
     var data = this.props.data;
     return(
-      <div id="movieDetailsContainer" className="bg-light pb-5">
+      <div id="movieDetailsContainer" className="bg-light my-5">
         <img id="detailsImg" src={data.Poster} alt="movie poster"></img>
         <div id="detailsText">
           IMBD:      <b> {data.imdbRating} / 10 </b> <br></br>
