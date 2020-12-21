@@ -1,42 +1,23 @@
 import React from "react";
-import $ from 'jquery';
 
-class MovieSearchResults extends React.Component {
-
-  generateMovieCards = () => { 
-    var moviesHTML = ``;
-    var data = this.props.data;
-
-    if(data.Response === 'True') {
-      
-      //Render individual movie card results
-      for(let i=0; i<data.Search.length; i++){
-        moviesHTML += `
-          <div id="${data.Search[i].imdbID}" className="col-6 movieCard">
-            <img class="movieImg" src="${data.Search[i].Poster}" alt="${data.Search[i].Title}"></img>
-          </div>`;
-      }
-
-      //update html before generating event listeners
-      $('#searchResultsContainer').html(moviesHTML);
-
-      //Render individual event listeners for each movie card
-      for(let i=0; i<data.Search.length; i++){
-        //When clicked calls getMovieDetails() passing that movie card's id
-        document.getElementById(data.Search[i].imdbID).addEventListener("click", () => {
-          this.props.fetchDetails(data.Search[i].imdbID);
-        });
-      }
-    } else {
-      moviesHTML = `<h1>No results</h1>`;
-      $('#searchResultsContainer').html(moviesHTML);
-    }
-  }
-
-  render() {
-    this.generateMovieCards();
+const MovieSearchResults = ({data, fetchDetails}) => {
+  //If data.Response != true, print loading
+  if(!data.Response){
+    return <h1 id="searchResultsContainer">Loading...</h1>
+  }else{
     return(
-      <div id="searchResultsContainer" className="bg-dark text-white"></div> 
+      <div id="searchResultsContainer" className="bg-dark text-white">
+        {data.Search.map( (movie, index) => 
+          <div 
+            key={index}
+            id={movie.imdbID} 
+            className="movieCard"
+            onClick={() => {fetchDetails(movie.imdbID)} }  
+          > 
+            <img className="movieImg" src={movie.Poster} alt={movie.Title}></img>
+          </div>
+        )}
+      </div> 
     )
   }
 }

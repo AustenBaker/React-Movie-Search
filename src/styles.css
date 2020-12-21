@@ -20,26 +20,27 @@ html, body{
 /* Page Header & Search Bar */
 
 
-#searchBarContainer{
+#navBarContainer{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
   background-color: black;
   font-family: 'Open Sans', sans-serif;
 }
 @media all and (max-width: 600px) {  
-  #searchBarContainer {  
+  #navBarContainer {  
     flex-direction: column;
   }  
 }
 #mainHeader{
   text-align: left;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 700;
+  margin-top: 10px;
   margin-left: 10px;
-  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-bottom: 10px;
   color: red;
 } 
 #searchBar{
@@ -47,6 +48,7 @@ html, body{
   text-align: right;
   min-height:100%;
   position: relative;
+  margin: 1rem;
   justify-content: flex-start;
 }
 #searchIcon{
@@ -96,20 +98,10 @@ input[type="text"]
 }
 .movieCard{ transition: all .2s ease-in-out; }
 .movieCard:hover{ transform: scale(1.1);}
-@media (min-width: 576px) { 
-  .movieImg { height:400px;}
-}
-@media (min-width: 768px) { 
-  .movieImg { height:400px;}
- }
-@media (min-width: 992px) { 
-  .movieImg { height:400px;}
- }
-@media (min-width: 1200px) { 
-  .movieImg {   height:400px;} 
- }
 .movieImg {
   border-radius: 10px;
+  height:400px;
+   width: 270px; 
   margin: 20px;
   border-style: solid;
   border-width: 5px;
@@ -126,8 +118,6 @@ input[type="text"]
 /* Movie Details Styling */
 #movieDetailsContainer{
   display: none;
-  margin: 1rem;
-  padding: 1rem;
   border-style: solid;
   border-width: 3px;
   border-color: var(---secondary-color); 
@@ -135,24 +125,24 @@ input[type="text"]
   font-family: 'Open Sans', sans-serif;
 }
 #detailsImg {
-  height: 100px;
-  max-width: 30%;
+  height: 400px;
+  width: 300px;
+  margin: 0 auto;
   border-style: solid;
+  
   border-width: 3px;
   border-color: var(--secondary-color);
 }
 @media (min-width: 576px) { 
-  #detailsImg { height:250px;}
+  #detailsImg { height:400px; margin: 0 auto;}
 }
 @media (min-width: 768px) { 
-  #detailsImg { height:300px;}
+  #detailsImg { height:400px; width: 300px; margin: 0 auto;}
  }
 @media (min-width: 992px) { 
-  #detailsImg { height:400px;}
+  #detailsImg { height:500px; width: 350px; margin: 0 auto;}
  }
-@media (min-width: 1200px) { 
-  #detailsImg {   height:500px;} 
- }
+
 #detailsText{
   color: var(--secondary-color);
   padding: 20px;

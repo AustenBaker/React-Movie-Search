@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class MovieSearchBar extends React.Component {
+class MovieSearchNavBar extends React.Component {
   handleClick() {
     document.getElementById("movieDetailsContainer").style.display = "none";
     document.getElementById("searchResultsContainer").style.display = "none";
@@ -10,7 +10,7 @@ class MovieSearchBar extends React.Component {
   
   render(){
     return (
-      <div id="searchBarContainer">
+      <div id="navBarContainer">
         <h1 id="mainHeader" onClick={this.handleClick}>
           React 
           <FontAwesomeIcon icon={['fa', 'film']} color="red" style={{marginLeft: 5, marginRight: 5}} />
@@ -36,4 +36,4 @@ class MovieSearchBar extends React.Component {
   }
 }
 
-export default MovieSearchBar;
+export default MovieSearchNavBar;

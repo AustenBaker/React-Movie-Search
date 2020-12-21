@@ -5,7 +5,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faSearch, faFilm, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Footer from './components/Footer';
 import { getSearchResults, getMovieDetails } from './fetch/movies';
-const MovieSearchBar = React.lazy(() => import('./components/MovieSearchBar'));
+const MovieSearchNavBar = React.lazy(() => import('./components/MovieSearchNavBar'));
 const MovieSearchResults = React.lazy(() => import('./components/MovieSearchResults.js'));
 const MovieDetails = React.lazy(() => import('./components/MovieDetails.js'));
 
@@ -32,7 +32,7 @@ class App extends Component {
     this.setState({ movieDetailsData: response });
     
     //Display movie details and hide search results/tip
-    document.getElementById("movieDetailsContainer").style.display = "flex";
+    document.getElementById("movieDetailsContainer").style.display = "block";
     document.getElementById("searchResultsContainer").style.display = "none";
     document.getElementById("searchTip").style.display = "none";
   }
@@ -40,7 +40,7 @@ class App extends Component {
   async fetchMovies() {
     const response = await getSearchResults( this.state.input );
     this.setState({ movieSearchData: response });
-
+    
     //Display search results and hide movie details if needed
     document.getElementById("movieDetailsContainer").style.display = "none";
     document.getElementById("searchResultsContainer").style.display = "flex";
@@ -54,7 +54,7 @@ class App extends Component {
       <div className="bg-dark">
         <div className="wrapper">
         <Suspense fallback={<div>Loading...</div>}>
-          <MovieSearchBar 
+          <MovieSearchNavBar 
             input={this.state.input}
             onChange={this.onChange}
             fetchMovies={this.fetchMovies}
