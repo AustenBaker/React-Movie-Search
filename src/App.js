@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import './styles.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faSearch, faFilm } from "@fortawesome/free-solid-svg-icons";
-import MovieSearchBar from './components/MovieSearchBar';
-import MovieSearchResults from './components/MovieSearchResults.js';
-import MovieDetails from './components/MovieDetails.js';
+import { faSearch, faFilm, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Footer from './components/Footer';
 import { getSearchResults, getMovieDetails } from './fetch/movies';
+const MovieSearchBar = React.lazy(() => import('./components/MovieSearchBar'));
+const MovieSearchResults = React.lazy(() => import('./components/MovieSearchResults.js'));
+const MovieDetails = React.lazy(() => import('./components/MovieDetails.js'));
 
-library.add(fab, faSearch, faFilm);
+library.add(fab, faSearch, faFilm, faEnvelope);
 
 class App extends Component {
   constructor(props) {
@@ -28,7 +28,6 @@ class App extends Component {
   }
 
   async fetchDetails(imdbID) {
-    //valid console.log(imdbID); 
     const response = await getMovieDetails( imdbID )
     this.setState({ movieDetailsData: response });
     
@@ -45,6 +44,7 @@ class App extends Component {
     //Display search results and hide movie details if needed
     document.getElementById("movieDetailsContainer").style.display = "none";
     document.getElementById("searchResultsContainer").style.display = "flex";
+    document.getElementById("searchTip").style.display = "none";
     //console.log(response.Search);
   }
 
@@ -53,21 +53,25 @@ class App extends Component {
     return (
       <div className="bg-dark">
         <div className="wrapper">
+        <Suspense fallback={<div>Loading...</div>}>
           <MovieSearchBar 
             input={this.state.input}
             onChange={this.onChange}
             fetchMovies={this.fetchMovies}
           />
-
-          <h4 id="searchTip" className="text-danger text-center pt-3">Go on... search for a movie</h4>
-
-          <MovieSearchResults 
-            data={this.state.movieSearchData} 
-            fetchDetails={this.fetchDetails}
-          /> 
-          <MovieDetails 
-            data={this.state.movieDetailsData} 
-          /> 
+        </Suspense>
+          <h1 id="searchTip" className="text-white text-center pt-3">Go on... search for a movie</h1>
+          <Suspense fallback={<div>Loading...</div>}>
+            <MovieSearchResults 
+              data={this.state.movieSearchData} 
+              fetchDetails={this.fetchDetails}
+            /> 
+          </Suspense>
+          <Suspense fallback={<div>Loading...</div>}>
+            <MovieDetails 
+              data={this.state.movieDetailsData} 
+            /> 
+          </Suspense>
         </div>
         <footer><Footer /></footer>
       </div>

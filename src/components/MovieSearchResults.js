@@ -36,7 +36,7 @@ class MovieSearchResults extends React.Component {
   render() {
     this.generateMovieCards();
     return(
-      <div id="searchResultsContainer" className="bg-dark"></div> 
+      <div id="searchResultsContainer" className="bg-dark text-white"></div> 
     )
   }
 }
