@@ -32,9 +32,9 @@ class App extends Component {
     this.setState({ movieDetailsData: response });
     
     //Display movie details and hide search results/tip
-    document.getElementById("movieDetailsContainer").style.display = "block";
-    document.getElementById("searchResultsContainer").style.display = "none";
-    document.getElementById("searchTip").style.display = "none";
+    //document.getElementById("movieDetailsContainer").style.display = "block";
+    //document.getElementById("searchResultsContainer").style.display = "none";
+    //document.getElementById("searchTip").style.display = "none";
   }
 
   async fetchMovies() {
@@ -64,6 +64,7 @@ class App extends Component {
           <Suspense fallback={<div>Loading...</div>}>
             <MovieSearchResults 
               data={this.state.movieSearchData} 
+              data2={this.state.movieDetailsData} 
               fetchDetails={this.fetchDetails}
             /> 
           </Suspense>
