@@ -1,34 +1,35 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const MovieSearchResults = ({data, data2, fetchDetails}) => {
-  //If data.Response != true, print loading
-  if(!data.Response){
+const MovieSearchResults = ({searchResults, details, fetchDetails}) => {
+  //If searchResults.Response != true, print loading
+  if(!searchResults.Response){
     return <h1 id="searchResultsContainer">Loading...</h1>
   }else{
     return(
       <div id="searchResultsContainer" className="bg-dark text-white">
-        {data.Search.map( (movie, index) => 
+        {searchResults.Search.map( (movie, index) => 
           <div className="movieCardContainer">
             <div 
               key={index}
               id={movie.imdbID} 
               className="movieCardInner"
-              onMouseOver={ () => (fetchDetails(movie.imdbID)) }  
+              onMouseEnter={ () => (fetchDetails(movie.imdbID)) }  
             > 
               <div className="movieCardFront">
                 <img className="movieImg" src={movie.Poster} alt={movie.Title}></img>
               </div>
              
               <div className="movieCardBack">
-                <h3 className="text-center"> {data2.Title} </h3>
-                <h4>
-                  IMBD:      <b> {data2.imdbRating} / 10 </b> <br />
-                  Metascore: <b> {data2.Metascore} / 100 </b> <br /><br />
-                </h4>
-                <h6> {data2.Plot} </h6> <br />
-                  Genre(s):     {data2.Genre} 
+                <div id="cardBackHeader"> {details.Title} </div> 
+                <div id="cardBackGenres"> {details.Genre} </div>
+                <div id="imbdContainer">
+                  <FontAwesomeIcon icon={['fab', 'imdb']} size="2x" id="imdbIcon" color="#DBA506"/> 
+                  <div id="imbdRating">{details.imdbRating} / 10  </div>
+                </div>
+                <div id="cardBackPlot"> {details.Plot} </div> <br />
                 <button
-                  className="fixed-bottom btn btn-info w-100"
+                  className="fixed-bottom showDetailsButton"
                   onClick={() => {
                     fetchDetails(movie.imdbID)
                     document.getElementById("movieDetailsContainer").style.display = "block";

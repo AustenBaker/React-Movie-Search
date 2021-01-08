@@ -29,7 +29,7 @@ class MovieSearchNavBar extends React.Component {
             icon={['fa', 'search']} 
             id="searchIcon"
           />
-          <input type="submit" id="searchButton" value="Search" onClick={this.props.fetchMovies} />
+          <input type="submit" id="searchButton" value="Search" onClick={this.props.fetchSearchResults} />
         </div>
       </div>
     );

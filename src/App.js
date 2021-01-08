@@ -15,7 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.onChange = this.onChange.bind(this);
-    this.fetchMovies = this.fetchMovies.bind(this);
+    this.fetchSearchResults = this.fetchSearchResults.bind(this);
     this.fetchDetails = this.fetchDetails.bind(this);
     this.state = {
       input: '',
@@ -27,6 +27,7 @@ class App extends Component {
     this.setState({input: event.target.value});
   }
 
+  //search for specific details using IMBDID
   async fetchDetails(imdbID) {
     const response = await getMovieDetails( imdbID )
     this.setState({ movieDetailsData: response });
@@ -37,18 +38,19 @@ class App extends Component {
     //document.getElementById("searchTip").style.display = "none";
   }
 
-  async fetchMovies() {
+  //search for movies using user input
+  async fetchSearchResults() {
     const response = await getSearchResults( this.state.input );
     this.setState({ movieSearchData: response });
+    //console.log(response.Search);
     
     //Display search results and hide movie details if needed
     document.getElementById("movieDetailsContainer").style.display = "none";
     document.getElementById("searchResultsContainer").style.display = "flex";
     document.getElementById("searchTip").style.display = "none";
-    //console.log(response.Search);
   }
 
-  async componentDidMount() { }
+  
   render() {
     return (
       <div className="bg-dark">
@@ -57,14 +59,14 @@ class App extends Component {
           <MovieSearchNavBar 
             input={this.state.input}
             onChange={this.onChange}
-            fetchMovies={this.fetchMovies}
+            fetchSearchResults={this.fetchSearchResults}
           />
         </Suspense>
           <h1 id="searchTip" className="text-white text-center pt-3">Go on... search for a movie</h1>
           <Suspense fallback={<div>Loading...</div>}>
             <MovieSearchResults 
-              data={this.state.movieSearchData} 
-              data2={this.state.movieDetailsData} 
+              searchResults={this.state.movieSearchData} 
+              details={this.state.movieDetailsData} 
               fetchDetails={this.fetchDetails}
             /> 
           </Suspense>
