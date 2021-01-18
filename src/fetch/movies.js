@@ -5,8 +5,7 @@ export async function getSearchResults(key) {
   const response = await fetch('/movies/key/' + key, {
     method: 'GET'
   })
-  console.log(response.json());
-  return null;
+  return await response.json();
 }
 
 //id = specific movie imbd
