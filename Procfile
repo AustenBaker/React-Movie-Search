@@ -1,0 +1,1 @@
+web: nodemon ./build/bin/www
