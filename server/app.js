@@ -16,7 +16,7 @@ app.use(express.static("public"));
 app.use('/', indexRouter);
 app.use('/movies', movieRouter);
 
-app.get('/*', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
