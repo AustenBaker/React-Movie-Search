@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var movieRouter = require('./routes/movies');
+const PORT = process.env.PORT || 3001;
 var app = express();
 
 
@@ -23,7 +24,6 @@ app.use('/', indexRouter);
 app.use('/movies', movieRouter);
 
 
-const port = process.env.PORT || 3002;
-app.listen(port, () => console.log("Listening on port " + port));
+app.listen(PORT, () => console.log("Listening on port " + port));
 
 module.exports = app;
