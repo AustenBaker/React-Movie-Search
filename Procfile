@@ -1,1 +1,1 @@
-web: nodemon ./build/bin/www
+web: cd ./server && npm start
