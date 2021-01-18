@@ -2,10 +2,10 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 //get api key from .env file
-const API_KEY = process.env.REACT_APP_OMDB_API_KEY
-
+const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
+const apiUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_PROD_API_URL : process.env.REACT_APP_DEV_API_URL;
 // GET /movies/key/:key
-router.get('/key/:key', async function (req, res) {
+router.get("/key/:key", async function (req, res) {
   //Search key
   const { key } = req.params;
   var url = "http://www.omdbapi.com/?apikey=" + API_KEY + "&s=" + key;
@@ -23,17 +23,17 @@ router.get('/key/:key', async function (req, res) {
 });
 
 // GET /movies/ID/:ID
-router.get('/ID/:ID', async function (req, res) {
+router.get("/ID/:ID", async function (req, res) {
   const { ID } = req.params;
   var url = "http://www.omdbapi.com/?apikey=" + API_KEY + "&i=" + ID;
   console.log(url);
 
   await request({url}, function(error, response, body) {
     if(!error && response.statusCode == 200) {
-      res.send(body)
+      res.send(body);
     } else {
-      console.log("error")
-      res.send("error")
+      console.log("error");
+      res.send("error");
     }
   })
 
