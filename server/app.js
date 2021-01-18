@@ -1,10 +1,9 @@
 var express = require('express');
-require('dotenv').config();
 var path = require('path');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var movieRouter = require('./routes/movies');
-const PORT = process.env.PORT || 3002;
+app.set( 'port', ( process.env.PORT || 5000 ));
 var app = express();
 
 app.use(logger('dev'));

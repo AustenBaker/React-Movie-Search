@@ -2,7 +2,7 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 //get api key from .env file
-const API_KEY = process.env.REACT_APP_OMDB_API_KEY;
+var API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 // GET /movies/key/:key
 router.get("/key/:key", async function (req, res) {
   //Search key
