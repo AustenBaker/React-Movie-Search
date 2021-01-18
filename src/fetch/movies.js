@@ -5,6 +5,7 @@ export async function getSearchResults(key) {
   const response = await fetch('/movies/key/' + key, {
     method: 'GET'
   })
+  console.log(response);
   return await response.json();
 }
 
