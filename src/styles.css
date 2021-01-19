@@ -27,20 +27,18 @@ html, body{
   justify-content: space-between;
   background-color: black;
   font-family: 'Open Sans', sans-serif;
+  padding: 0.5rem;
 }
 #mainHeader{
-  text-align: left;
-  font-size: 28px;
   font-weight: 700;
-  margin: 1rem;
   color: red;
+  margin: 0;
 } 
 #searchBar{
   display: flex;
   text-align: right;
   min-height:100%;
   position: relative;
-  margin: 1rem;
   justify-content: flex-start;
 }
 #searchIcon{
@@ -228,7 +226,4 @@ input[type="text"]
   #navBarContainer {  
     flex-direction: column;
   }  
-  #mainHeader{
-    margin: 1rem 1rem 0rem 1rem;
-  }
 }

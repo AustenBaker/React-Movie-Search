@@ -1,7 +1,6 @@
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
-var indexRouter = require('./routes/index');
 require('dotenv').config()
 var movieRouter = require('./routes/movies');
 const PORT = process.env.PORT || 5000;
@@ -16,4 +15,3 @@ express()
     res.sendFile(path.resolve(__dirname, './build', 'index.html'));
 })
     .listen(PORT, () => console.log("Listening on port " + PORT));
-
