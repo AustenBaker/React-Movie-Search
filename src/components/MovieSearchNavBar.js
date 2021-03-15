@@ -1,39 +1,39 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-class MovieSearchNavBar extends React.Component {
-  handleClick() {
+const MovieSearchNavBar = ({input, onChange, getSearchResults}) =>  {
+  const handleClick = () => {
     document.getElementById("movieDetailsContainer").style.display = "none";
     document.getElementById("searchResultsContainer").style.display = "none";
-    document.getElementById("searchTip").style.display = "none";
+    document.getElementById("QuickSearchContainer").style.display = "flex";
+    document.getElementById("quickSearchHeader").style.display = "block";
   }
-  
-  render(){
-    return (
-      <div id="navBarContainer">
-        <h1 id="mainHeader" onClick={this.handleClick}>
-          React 
-          <FontAwesomeIcon icon={['fa', 'film']} color="red" style={{marginLeft: 5, marginRight: 5}} />
-          Search
-        </h1>
-        <div id="searchBar">
-          <input 
-            type="text"
-            name="key"
-            value={this.props.input}
-            onChange={this.props.onChange}
-            className="searchInput"
-            placeholder="Search movies..."
-          />
-          <FontAwesomeIcon 
-            icon={['fa', 'search']} 
-            id="searchIcon"
-          />
-          <input type="submit" id="searchButton" value="Search" onClick={this.props.fetchMovies} />
-        </div>
+
+  return (
+    <div id="navBarContainer">
+      <h1 id="mainHeader" onClick={() => handleClick()}>
+        React
+        <FontAwesomeIcon icon={['fa', 'film']} 
+          style={{marginLeft: 10, marginRight: 8, color: "red"}} 
+        />
+        Search
+      </h1>
+      <div id="searchBar">
+        <input 
+          type="text" name="key" value={input} onChange={onChange} 
+          className="searchInput" placeholder="Search movies..."
+        />
+        <FontAwesomeIcon icon={['fa', 'search']} id="searchIcon" 
+          style={{}} 
+        />
+        <input 
+          type="submit" id="searchButton"  value="Search" 
+          onClick={() => getSearchResults(input)} 
+        />
       </div>
-    );
-  }
+    </div>
+  );
 }
+
 
 export default MovieSearchNavBar;

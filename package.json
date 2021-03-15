@@ -1,5 +1,5 @@
 {
-  "name": "reactportfolio",
+  "name": "react-movie-search",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -25,7 +25,6 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:3002",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -41,5 +40,8 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
+  }
 }

@@ -1,54 +1,61 @@
 import React, { Component, Suspense } from 'react';
 import './styles.css';
+import { fetchSearchResults, fetchMovieDetails } from './fetch/movies';
+//components
+import Footer from './components/Footer';
+import MovieSearchNavBar from './components/MovieSearchNavBar';
+//fontawesome icons
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faSearch, faFilm, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import Footer from './components/Footer';
-import { getSearchResults, getMovieDetails } from './fetch/movies';
-const MovieSearchNavBar = React.lazy(() => import('./components/MovieSearchNavBar'));
+import { faSearch, faFilm, faEnvelope, faGhost, faAppleAlt, faPizzaSlice, faHamburger, faKey, faPlane
+} from "@fortawesome/free-solid-svg-icons";
+library.add(fab, faSearch, faFilm, faEnvelope, faGhost, faAppleAlt, faPizzaSlice, faHamburger, faKey, faPlane);
+//lazy loading components
 const MovieSearchResults = React.lazy(() => import('./components/MovieSearchResults.js'));
 const MovieDetails = React.lazy(() => import('./components/MovieDetails.js'));
-
-library.add(fab, faSearch, faFilm, faEnvelope);
+const IconSearch = React.lazy (() => import('./components/IconSearch.js'));
 
 class App extends Component {
+
   constructor(props) {
     super(props)
     this.onChange = this.onChange.bind(this);
-    this.fetchMovies = this.fetchMovies.bind(this);
-    this.fetchDetails = this.fetchDetails.bind(this);
+    this.getSearchResults = this.getSearchResults.bind(this);
+    this.getMovieDetails = this.getMovieDetails.bind(this);
     this.state = {
       input: '',
-      movieSearchData: [],
+      searchResultsData: [],
       movieDetailsData: [],
     }
   }
+
+  //update search input state
+  //called by src/components/MovieSearchNavBar.js
   onChange = event => {
     this.setState({input: event.target.value});
   }
 
-  async fetchDetails(imdbID) {
-    const response = await getMovieDetails( imdbID )
-    this.setState({ movieDetailsData: response });
-    
-    //Display movie details and hide search results/tip
-    //document.getElementById("movieDetailsContainer").style.display = "block";
-    //document.getElementById("searchResultsContainer").style.display = "none";
-    //document.getElementById("searchTip").style.display = "none";
-  }
-
-  async fetchMovies() {
-    const response = await getSearchResults( this.state.input );
-    this.setState({ movieSearchData: response });
-    
-    //Display search results and hide movie details if needed
+  //search for movies using user input
+  //called by src/components/MovieSearchNavBar.js
+  //when user clicks search
+  async getSearchResults(input) {
+    const response = await fetchSearchResults( input );
+    this.setState({ searchResultsData: response });
+    //console.log(this.state.searchResultsData);
     document.getElementById("movieDetailsContainer").style.display = "none";
     document.getElementById("searchResultsContainer").style.display = "flex";
-    document.getElementById("searchTip").style.display = "none";
-    //console.log(response.Search);
+    document.getElementById("quickSearchHeader").style.display = "none";
+    document.getElementById("QuickSearchContainer").style.display = "none";
   }
 
-  async componentDidMount() { }
+  //search for a specific movie's details using its imdbID
+  //called by src/components/MovieSearchResults.js
+  async getMovieDetails(imdbID) {
+    const response = await fetchMovieDetails( imdbID );
+    this.setState({ movieDetailsData: response });
+    //console.log(this.state.movieDetailsData);
+  }
+  
   render() {
     return (
       <div className="bg-dark">
@@ -57,24 +64,23 @@ class App extends Component {
           <MovieSearchNavBar 
             input={this.state.input}
             onChange={this.onChange}
-            fetchMovies={this.fetchMovies}
+            getSearchResults={this.getSearchResults}
           />
-        </Suspense>
-          <h1 id="searchTip" className="text-white text-center pt-3">Go on... search for a movie</h1>
-          <Suspense fallback={<div>Loading...</div>}>
+            <h4 id="quickSearchHeader" className="text-white text-center">Quick Icon Search</h4>
+            <IconSearch getSearchResults={this.getSearchResults}/>
             <MovieSearchResults 
-              data={this.state.movieSearchData} 
-              data2={this.state.movieDetailsData} 
-              fetchDetails={this.fetchDetails}
+              searchResults={this.state.searchResultsData} 
+              movieDetails={this.state.movieDetailsData}
+              getMovieDetails={this.getMovieDetails}
             /> 
-          </Suspense>
-          <Suspense fallback={<div>Loading...</div>}>
             <MovieDetails 
               data={this.state.movieDetailsData} 
             /> 
           </Suspense>
         </div>
-        <footer><Footer /></footer>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     );
   }

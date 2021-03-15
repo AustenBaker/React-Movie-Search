@@ -1,36 +1,44 @@
 import React from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const MovieSearchResults = ({data, data2, fetchDetails}) => {
-  //If data.Response != true, print loading
-  if(!data.Response){
-    return <h1 id="searchResultsContainer">Loading...</h1>
-  }else{
+//PROP info
+//searchResults = searchResultsData
+//movieDetails = movieDetailsData
+//getMovieDetails is a function passed from App.js which
+  //calls fetchMovieDetails, and updates state in App.js
+
+const MovieSearchResults = ({searchResults, movieDetails, getMovieDetails}) => {
+  if(searchResults === undefined || searchResults.length === 0 || searchResults.Response === "False"){
+    return (
+      <h1 id="searchResultsContainer">No movies found</h1>
+    );
+  }else if(searchResults.Search !== undefined){
     return(
       <div id="searchResultsContainer" className="bg-dark text-white">
-        {data.Search.map( (movie, index) => 
+        {searchResults.Search.map( (movie, index) => 
           <div className="movieCardContainer">
             <div 
               key={index}
               id={movie.imdbID} 
               className="movieCardInner"
-              onMouseOver={ () => (fetchDetails(movie.imdbID)) }  
+              onMouseEnter={ () => (getMovieDetails(movie.imdbID)) }  
             > 
               <div className="movieCardFront">
                 <img className="movieImg" src={movie.Poster} alt={movie.Title}></img>
               </div>
              
               <div className="movieCardBack">
-                <h3 className="text-center"> {data2.Title} </h3>
-                <h4>
-                  IMBD:      <b> {data2.imdbRating} / 10 </b> <br />
-                  Metascore: <b> {data2.Metascore} / 100 </b> <br /><br />
-                </h4>
-                <h6> {data2.Plot} </h6> <br />
-                  Genre(s):     {data2.Genre} 
+                <div id="cardBackHeader"> {movieDetails.Title} </div> 
+                <div id="cardBackGenres"> {movieDetails.Genre} </div>
+                <div id="imbdContainer">
+                  <FontAwesomeIcon icon={['fab', 'imdb']} size="2x" id="imdbIcon" color="#DBA506"/> 
+                  <div id="imbdRating">{movieDetails.imdbRating} / 10  </div>
+                </div>
+                <div id="cardBackPlot"> {movieDetails.Plot} </div> <br />
                 <button
-                  className="fixed-bottom btn btn-info w-100"
+                  className="fixed-bottom showDetailsButton"
                   onClick={() => {
-                    fetchDetails(movie.imdbID)
+                    getMovieDetails(movie.imdbID);
                     document.getElementById("movieDetailsContainer").style.display = "block";
                     document.getElementById("searchResultsContainer").style.display = "none";
                   }}
@@ -42,6 +50,7 @@ const MovieSearchResults = ({data, data2, fetchDetails}) => {
       </div> 
     )
   }
+  return null;
 }
 
 export default MovieSearchResults;
