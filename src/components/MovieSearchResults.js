@@ -12,7 +12,7 @@ const MovieSearchResults = ({searchResults, movieDetails, getMovieDetails}) => {
     return (
       <h1 id="searchResultsContainer">No movies found</h1>
     );
-  }else if(searchResults.Search != undefined){
+  }else if(searchResults.Search !== undefined){
     return(
       <div id="searchResultsContainer" className="bg-dark text-white">
         {searchResults.Search.map( (movie, index) => 

@@ -5,7 +5,8 @@ const MovieSearchNavBar = ({input, onChange, getSearchResults}) =>  {
   const handleClick = () => {
     document.getElementById("movieDetailsContainer").style.display = "none";
     document.getElementById("searchResultsContainer").style.display = "none";
-    document.getElementById("searchTip").style.display = "none";
+    document.getElementById("QuickSearchContainer").style.display = "flex";
+    document.getElementById("quickSearchHeader").style.display = "block";
   }
 
   return (
@@ -27,7 +28,7 @@ const MovieSearchNavBar = ({input, onChange, getSearchResults}) =>  {
         />
         <input 
           type="submit" id="searchButton"  value="Search" 
-          onClick={() => getSearchResults()} 
+          onClick={() => getSearchResults(input)} 
         />
       </div>
     </div>
